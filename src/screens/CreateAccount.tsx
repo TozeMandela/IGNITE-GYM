@@ -7,15 +7,14 @@ import LogoSvg from '@assets/logo.svg';
 import { Input } from '@components/Input/Input';
 import { Button } from '@components/Button';
 import { useNavigation } from '@react-navigation/native';
-import { AuthNavigateRoutesProps } from '@routes/auth/auth.routes';
 
 
 
-export function Signin() {
-  const {navigate } = useNavigation<AuthNavigateRoutesProps>();
+export function Account() {
+  const { goBack } = useNavigation();
 
-  const handleCreate = ()=> {
-    navigate('Account');
+  const handleGoBack = () => {
+    goBack();
   }
 
   return (
@@ -38,16 +37,18 @@ export function Signin() {
 
         <Center mb={6}>
           <Heading color='gray.100' fontSize={'xl'}>
-            Acesse sua conta
+            Crie sua conta
           </Heading>
         </Center>
 
         <Center>
           <VStack width={'80%'}>
+            <Input placeholder='Nome' keyboardType='default'/>
             <Input placeholder='E-mail' keyboardType='email-address'/>
             <Input placeholder='Senha' secureTextEntry />
+            <Input placeholder='Senha de confirmação' secureTextEntry />
             <Button
-              text='Entrar'
+              text='Criar e acessar'
               size="full"
             />
           </VStack>
@@ -55,21 +56,11 @@ export function Signin() {
 
         <Center mt={24}>
             <VStack width={'80%'}>
-              <Center>
-                <Text
-                  color={'gray.100'}
-                  fontSize={'sm'}
-                  mb={3}
-                  fontFamily={'body'}
-                >
-                  Ainda não tem uma conta?
-                </Text>
-              </Center >
               <Button
-                text='Criar conta'
+              onPress={handleGoBack}
+                text='Voltar para Login'
                 size="full"
                 variant={'outline'}
-                onPress={handleCreate}
               />
             </VStack>
           </Center>
