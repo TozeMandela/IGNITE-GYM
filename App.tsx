@@ -3,7 +3,7 @@ import { useFonts, Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/
 import { NativeBaseProvider } from 'native-base';
 
 
-import { Loader } from '@screens/Loader/Loader';
+import { Loader } from '@components/Loader/Loader';
 
 
 import { THEME } from './src/themes';

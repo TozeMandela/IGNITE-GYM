@@ -1,6 +1,9 @@
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native'
-import { AuthRoutes } from "./auth/auth.routes";
 import { useTheme } from 'native-base';
+
+import { AuthRoutes } from "./auth/auth.routes";
+import { AppRutes } from "./app/app.routes";
+
 
 
 
@@ -14,7 +17,7 @@ export function Routes () {
 
     return (
         <NavigationContainer theme={theme}>
-            <AuthRoutes />
+            <AppRutes />
         </NavigationContainer>
     )
 }
