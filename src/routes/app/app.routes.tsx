@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { Platform } from 'react-native'
 import { createBottomTabNavigator,  } from '@react-navigation/bottom-tabs';
 
 import { Home } from '@screens/Home';
@@ -27,7 +28,8 @@ const { Navigator, Screen } = createBottomTabNavigator<IpropsAppRoutes>();
 export function AppRutes() {
  const { colors, sizes } = useTheme();
 
- const size = sizes[8]
+ const size = sizes[8];
+
   return (
     <Navigator screenOptions={{
         headerShown: false,
@@ -37,6 +39,10 @@ export function AppRutes() {
         tabBarStyle: {
             backgroundColor: colors.gray[600],
             borderTopWidth: 0, 
+            height: Platform.OS === 'android' ? 'auto':96,
+            paddingBottom: sizes[7],
+            paddingTop: sizes[8]
+
         }
 
 
