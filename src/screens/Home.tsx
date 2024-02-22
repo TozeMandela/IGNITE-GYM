@@ -1,12 +1,15 @@
-import { ExercicyCard } from '@components/Exercicie/ExercicyCard';
-import { Group } from '@components/Group/Group';
-import { HomeHeader } from '@components/HomeHeader/HomeHeader'
+import React, { useState } from 'react';
 import { FlatList, HStack, Heading, Text, VStack } from 'native-base'
-import React, { useState } from 'react'
+
+import { Group } from '@components/Group/Group';
+import { HomeHeader } from '@components/ScreensHeader/HomeHeader'
+import { ExercicyCard, PropsexercicieCard } from '@components/Exercicie/ExercicyCard';
 
 export function Home() {
-  const [groups, setGroups] = useState(['costas', 'ombros', 'biceps', 'Triceps', 'pé'])
+  const [groups, setGroups] = useState(['costas', 'ombros', 'biceps', 'Triceps', 'pé']);
   const [active, setActive] = useState('costas');
+
+  const [exercicie, setExercicie] = useState<PropsexercicieCard[]>([{title: 'Flexões de braço', description:  '3 Série x 12 repetições', imgURI: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKicJ9g2znB6RyEbFcGhgjEYsA9tlRJOFIKw&usqp=CAU'},{title: 'Flexões de braço', description:  '3 Série x 12 repetições', imgURI: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKicJ9g2znB6RyEbFcGhgjEYsA9tlRJOFIKw&usqp=CAU'},{title: 'Flexões de braço', description:  '3 Série x 12 repetições', imgURI: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKicJ9g2znB6RyEbFcGhgjEYsA9tlRJOFIKw&usqp=CAU'}, {title: 'Flexões de braço', description:  '3 Série x 12 repetições', imgURI: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKicJ9g2znB6RyEbFcGhgjEYsA9tlRJOFIKw&usqp=CAU'}])
 
   return (
     <VStack>
@@ -40,13 +43,20 @@ export function Home() {
                 <Text
                   color={'gray.200'}
                   >
-                    4
+                    {exercicie.length}
                 </Text>
           </HStack>
 
-            <ExercicyCard
-              title='Flexões de braço' 
-              description='3 Série x 12 repetições'
+              <FlatList 
+                data={exercicie}
+                keyExtractor={item => item.title}
+                renderItem={({item})=> (
+                  <ExercicyCard
+                    imgURI={item.imgURI}
+                    title={item.title}
+                    description={item.description}
+                  />
+                )}
               />
 
 

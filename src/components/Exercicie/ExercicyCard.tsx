@@ -3,26 +3,29 @@ import { HStack, Heading, Icon, Image, Text, VStack} from 'native-base'
 import { TouchableOpacity, TouchableOpacityProps } from 'react-native'
 import {Entypo} from '@expo/vector-icons' 
 
-
-type Props = TouchableOpacityProps & {
-title: string,
-description: string,
+export interface PropsexercicieCard {
+  imgURI?: string,
+  title: string,
+  description: string,
 }
 
 
-export function ExercicyCard({description, title, ...rest}: Props) {
+type Props = TouchableOpacityProps & PropsexercicieCard;
+
+
+export function ExercicyCard({description, title, imgURI, ...rest}: Props) {
   return (
     <TouchableOpacity 
         {...rest}
     >
-        <HStack bg={'gray.400'} p={2} alignItems={'center'}>
+        <HStack bg={'gray.400'} p={2} alignItems={'center'} mb={3}>
           <Image
-            source={{uri: 'https://pratiquefitness.com.br/blog/wp-content/uploads/2021/02/X-exerc%C3%ADcios-com-auxilio-da-cadeira-3.jpg'}}
+            source={{uri: imgURI}}
             alt='ombro'
             h={16}
             w={16}
             rounded={'md'}
-            resizeMode='cover'
+            resizeMode='stretch'
 
           />
 

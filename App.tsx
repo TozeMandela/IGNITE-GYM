@@ -18,7 +18,6 @@ export default function App() {
         barStyle={'light-content'}
         translucent
         backgroundColor='transparent'
-      
       /> 
       
       {fontsLoader ? <Routes /> : <Loader/>}
