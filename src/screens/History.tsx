@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 
-import { Heading, VStack , SectionList} from 'native-base';
+import { Heading, VStack , SectionList, Center, Text, View} from 'native-base';
 
 
 import { ScrennHeader } from '@components/ScreensHeader/ScrennHeader'
 import { HistoryCard } from '@components/historyCard/HistoryCard'
+import { border } from 'native-base/lib/typescript/theme/styled-system';
 
 export function History() {
   const [exercicies, setExercicies] = useState([
@@ -44,10 +45,19 @@ export function History() {
           >{section.title}</Heading>
         )}
 
-        contentContainerStyle={{
-          paddingBottom: 60
+        contentContainerStyle={exercicies.length === 0 && {
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center'
         }}
 
+        ListEmptyComponent={()=>(
+            <Text 
+              color={'gray.100'}
+              alignItems={'center'} 
+              justifyContent={'center'}>Não há exercicios registrados
+            </Text>
+        )}
         
       />
     </VStack>

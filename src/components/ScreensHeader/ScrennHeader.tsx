@@ -11,7 +11,7 @@ export function ScrennHeader({title}: Props) {
         pt={16} 
         pb={8}
         bg={'gray.600'}
-        mb={16}
+        mb={10}
         >
         <Heading 
             color={'gray.100'}

@@ -12,7 +12,8 @@ export function HomeHeader() {
  
     <HStack
         bg={'gray.600'}
-        pt={16} pb={5}
+        pt={16} 
+        pb={5}
         px={8}
         alignItems={'center'}
         >

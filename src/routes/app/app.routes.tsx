@@ -1,6 +1,6 @@
 import React from 'react';
 import { Platform } from 'react-native'
-import { createBottomTabNavigator,  } from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator, BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 
 import { Home } from '@screens/Home';
 import { History } from '@screens/History';
@@ -20,6 +20,7 @@ type IpropsAppRoutes = {
     History: undefined,
     Profile: undefined,
 }
+export type AppNavigateRoutesProps = BottomTabNavigationProp<IpropsAppRoutes>;
 
 const { Navigator, Screen } = createBottomTabNavigator<IpropsAppRoutes>();
 

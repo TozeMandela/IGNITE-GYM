@@ -13,7 +13,11 @@ export interface PropsexercicieCard {
 type Props = TouchableOpacityProps & PropsexercicieCard;
 
 
+
 export function ExercicyCard({description, title, imgURI, ...rest}: Props) {
+  
+  
+  
   return (
     <TouchableOpacity 
         {...rest}
