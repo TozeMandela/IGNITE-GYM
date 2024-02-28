@@ -1,13 +1,15 @@
 import React from 'react'
-import { Center, Heading, Image, ScrollView, Text, VStack, Toast } from 'native-base'
 import { useForm, Controller } from 'react-hook-form'
+import { useNavigation } from '@react-navigation/native';
+import { Center, Heading, Image, ScrollView, Text, VStack, Toast } from 'native-base'
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup'
 
 import backgroundImg from '@assets/background.png';
 import LogoSvg from '@assets/logo.svg';
 
 import { Input } from '@components/Input/Input';
 import { Button } from '@components/Button';
-import { useNavigation } from '@react-navigation/native';
 
 type IpropsDataForm = {
   name: string,
@@ -16,9 +18,20 @@ type IpropsDataForm = {
   senha1: string
 }
 
+
+const schema = yup.object({
+  name: yup.string().required('Nome é obrigatório').min(7, 'precisa ser Nome completo'),
+  email: yup.string().required('E-mail é obrigatório').email('E-mail invalido!!!'),
+  senha: yup.string().required('informe a senha!').min(5),
+  senha1: yup.string().required('informe a senha de confirmação').oneOf([yup.ref('senha')], 'a senha de confirmação precisa ser igual a senha de cima!')
+})
+
+
 export function Account() {
   const { goBack } = useNavigation();
-  const { control, handleSubmit, formState: { errors } } = useForm<IpropsDataForm>();
+  const { control, handleSubmit, formState: { errors } } = useForm<IpropsDataForm>({
+    resolver: yupResolver(schema)
+  });
 
   const handleSingup = (data: IpropsDataForm)=> {
     
@@ -60,9 +73,6 @@ export function Account() {
             <Controller 
               name='name' 
               control={control}
-              rules={{
-                required: 'Nome é obrigatório'
-              }}
               render={({field: {onChange, value} }) => (
                 <Input 
                   errMessage={errors.name?.message}
@@ -77,13 +87,6 @@ export function Account() {
             <Controller 
               name='email'
               control={control}
-              rules={{
-                required: 'E-mail é obrigatório',
-                pattern: {
-                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                  message: 'E-mail invalido!!!'
-                }
-              }}
               render={({field: {onChange, value}}) => (
                 <Input 
                   errMessage={errors.email?.message}
@@ -102,6 +105,7 @@ export function Account() {
               render={({field: {value, onChange}})=>(
                 <Input 
                   id='senha'
+                  errMessage={errors.senha?.message}
                   value={value}
                   onChangeText={onChange}
                   type='password'
@@ -116,6 +120,7 @@ export function Account() {
               render={({field: {value, onChange}})=>(
                 <Input 
                   id='senha1'
+                  errMessage={errors.senha1?.message}
                   value={value}
                   onChangeText={onChange}
                   type='password'
