@@ -29,6 +29,8 @@ export function HistoryCard() {
           color={'white'}
           fontSize={'xl'}
           mb={1}
+          flex={1}
+          numberOfLines={1}
         >
           Costas
         </Heading>

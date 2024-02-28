@@ -1,7 +1,7 @@
 import React from 'react'
 import { Feather } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native';
-import {  Box, HStack, Heading, Icon, Image, Text, VStack } from 'native-base'
+import {  Box, HStack, Heading, Icon, Image, ScrollView, Text, VStack } from 'native-base'
 
 import { useNavigation } from '@react-navigation/native';
 
@@ -56,45 +56,45 @@ export function Exercicie() {
           </HStack>
         </HStack>
       </VStack>
-      <VStack px={10} my={6}>
-        <Image
-          source={{uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKicJ9g2znB6RyEbFcGhgjEYsA9tlRJOFIKw&usqp=CAU'}}
-          alt='photo do exercicio'     
-          w={'full'}
-          h={80} 
-          resizeMode='stretch'
-          rounded={'lg'}
-        />
-
-        <Box
-          bg={'gray.600'}
-          mt={4}
-          pt={6}
-          px={6}
-          justifyContent={'center'}
-          rounded={'lg'}
-        >
-         <HStack mb={4} justifyContent={'space-between'} alignItems={'center'}>
-          
-          <HStack alignItems={'center'}>
-            <SeriesSvg/>
-            <Text
-              pl={2}
-              color={'white'}
-            >3 Séries</Text>
-          </HStack> 
-
-          <HStack alignItems={'center'}>
-            <RepetitionSvg/>
-            <Text
-              pl={2}
-              color={'white'}
-            >12 Repetições</Text>
-          </HStack>  
-         </HStack> 
-          <Button text='Marcar como realizado' width={'100%'} />
-        </Box>
-      </VStack>
+      <ScrollView>
+        <VStack px={10} my={6}>
+          <Image
+            source={{uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKicJ9g2znB6RyEbFcGhgjEYsA9tlRJOFIKw&usqp=CAU'}}
+            alt='photo do exercicio'
+            w={'full'}
+            h={80}
+            resizeMode='stretch'
+            rounded={'lg'}
+          />
+          <Box
+            bg={'gray.600'}
+            mt={4}
+            pt={6}
+            px={6}
+            justifyContent={'center'}
+            rounded={'lg'}
+          >
+           <HStack mb={4} justifyContent={'space-between'} alignItems={'center'}>
+        
+            <HStack alignItems={'center'}>
+              <SeriesSvg/>
+              <Text
+                pl={2}
+                color={'white'}
+              >3 Séries</Text>
+            </HStack>
+            <HStack alignItems={'center'}>
+              <RepetitionSvg/>
+              <Text
+                pl={2}
+                color={'white'}
+              >12 Repetições</Text>
+            </HStack>
+           </HStack>
+            <Button text='Marcar como realizado' width={'100%'} />
+          </Box>
+        </VStack>
+      </ScrollView>
     </>
   )
 }

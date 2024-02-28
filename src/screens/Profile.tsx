@@ -1,6 +1,8 @@
 
 import React, { useState } from 'react'
+import * as ImagePicker from 'expo-image-picker'
 import { VStack, Text, ScrollView, Center, Skeleton, Heading } from 'native-base'
+
 
 import { ScrennHeader } from '@components/ScreensHeader/ScrennHeader'
 import { UserPhoto } from '@components/userPhotos/UserPhoto'
@@ -12,7 +14,34 @@ const PHOTO_SIZE = 33;
 
 export function Profile() {
   const [photoIsLoader, setPhotoIsLoader] = useState(false);
+  const [userPhoto, setUserPhoto] = useState<string>('https://github.com/TozeMandela.png');
 
+  const handleUserPhotoSelect = async () => {
+    setPhotoIsLoader(true);
+    try {
+        const photo = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        quality: 1,
+        aspect: [4,4],
+        allowsEditing: true
+      });
+
+      if(photo.canceled){
+        return null;
+      }
+
+      if(photo.assets[0].uri)
+        setUserPhoto(photo.assets[0].uri)
+
+    } catch (error) {
+      console.log('====================================');
+      console.log(error);
+      console.log('====================================');
+    }finally{
+      setPhotoIsLoader(false);
+    }
+    
+  }
 
   return (
     <VStack flex={1}>
@@ -32,11 +61,11 @@ export function Profile() {
           /> :
           <UserPhoto
             size={PHOTO_SIZE}
-            source={{uri: 'https://github.com/TozeMandela.png'}}
+            source={{uri: userPhoto}}
             alt='perfil'
           />}
 
-          <TouchableOpacity>
+          <TouchableOpacity onPress={handleUserPhotoSelect}>
             <Text
               color={'green.500'}
               fontSize={'md'}

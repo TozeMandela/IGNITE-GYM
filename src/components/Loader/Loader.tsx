@@ -1,5 +1,5 @@
-import { Spinner, Center } from 'native-base'
 import React from 'react'
+import { Spinner, Center } from 'native-base'
 
 export function Loader() {
   return (

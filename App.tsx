@@ -12,6 +12,7 @@ import { Routes } from '@routes/index';
 
 export default function App() {
   const [fontsLoader] = useFonts({ Roboto_400Regular, Roboto_700Bold });
+  
   return (
     <NativeBaseProvider theme={THEME}>
       <StatusBar 
